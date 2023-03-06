@@ -1,0 +1,28 @@
+<div class="alert alert-danger" role="alert" *ngIf="wrongCredentials">
+  We couldn’t find an account matching the username and password you entered. Please check your username and password and try again.
+  <a routerLink="/signup" class="text-white text-bold">Or, Sign Up</a>
+</div>
+<div class="form">
+  <h2>Sign in to Dribbble</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <label for="username">Username or Email Address</label>
+      <input type="text" id="username" formControlName="username">
+
+      <div class="error-msg" *ngIf="username.touched">
+        <small *ngIf="username.hasError('required')">
+          Username is required
+        </small>
+      </div>
+     
+
+      <label for="passwordSignin">Password</label>
+      <input type="password" id="passwordSignin" formControlName="password">
+      <div class="error-msg" *ngIf="password.touched">
+        <small *ngIf="password.hasError('required')">
+          Password is required
+        </small>
+      </div>
+    
+    <input type="submit" value="Sign In" id="btnSignin" [disabled]="!loginForm.valid">
+  </form>
+</div>
