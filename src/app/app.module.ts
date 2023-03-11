@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -12,10 +12,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CartComponent } from './cart/cart.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 const appRoute: Routes = [
-  {path: '', component: LoginFormComponent},
+  // {path: '', component: LoginFormComponent},
   {path: 'home', component: HomeComponent},
   {path: 'loginpage', component: LoginPageComponent},
   // {path: 'login', component: LoginFormComponent},
@@ -27,12 +30,15 @@ const appRoute: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProductCardComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     LoginPageModule,
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [
     UserService,
