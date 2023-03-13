@@ -4,8 +4,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HomeComponent } from 'src/app/home/home.component';
-import { loginTrue } from './store/login.actions';
-import { loginState } from './store/login.state';
+import { loginTrue } from './state/login.actions';
+import { loginState } from './state/login.state';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +18,7 @@ export class LoginFormComponent {
   wrongCredentials: boolean;
 
   constructor(private authService: AuthService,
-    private router: Router, private store: Store<{ login: loginState }>
+    private router: Router, private store: Store<AppState>
   ) {
     this.wrongCredentials = false;
   }
@@ -35,11 +36,11 @@ export class LoginFormComponent {
     const token = this.authService.authUser(this.loginForm.value);
 
     if (token) {
-      this.store.dispatch(loginTrue());
       localStorage.setItem('token', token.username);
       console.log("Login Successfull");
       this.router.navigate(['/home']);
       this.wrongCredentials = false;
+      this.store.dispatch(loginTrue());
     } else {
       this.wrongCredentials = true;
       console.log("Login not successfull");

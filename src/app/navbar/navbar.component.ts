@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loginFalse } from '../components/login-form/store/login.actions';
-import { loginState } from '../components/login-form/store/login.state';
+import { AppState } from '../app.state';
+import { loginFalse } from '../components/login-form/state/login.actions';
+import { loginState } from '../components/login-form/state/login.state';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { loginState } from '../components/login-form/store/login.state';
 })
 export class NavbarComponent {
 
-  constructor(private store: Store<{login : loginState}>){
+  constructor(private store: Store<AppState>){
 
   }
 

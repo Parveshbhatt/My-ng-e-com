@@ -1,0 +1,16 @@
+<h1>Our Products</h1>
+<div class="product-container">
+  <div *ngFor="let item of products">
+    <app-product-card
+    [id]="item.id"
+    [title]="item.category"
+
+    [description]="item.title.slice(0, 55)+((item.title.length>50)?'...':'') "
+    [price]="item.price"
+    [source]="item.image"
+    [ratingRate]="item.rating.rate"
+    [ratingCount]="item.rating.count"
+    ></app-product-card>
+  </div>
+</div>
+

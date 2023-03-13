@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
   username: string = localStorage.getItem('token');
 }

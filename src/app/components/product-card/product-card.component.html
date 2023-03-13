@@ -1,6 +1,35 @@
-<div class="container">
+<!-- <div class="container">
   <h1>My Product</h1>
-  <button (click)="onAddToCart()">Add to Cart</button>
-</div>
+  <button (click)="onAddToCart()" [disabled]="!islogin">Add to Cart</button>
+</div> -->
 
 <!-- <app-login-page></app-login-page> -->
+
+<div class="product-card">
+  <div class="card-img">
+    <img [src]="source" alt=" watch image">
+    <fa-icon [icon]="faHeartCirclePlus" title="Add to Wishlist"></fa-icon>
+  </div>
+  
+  <div class="card-content">
+    <div class="title">
+      <p>{{title}}</p>
+    </div>
+    <div class="description">
+     <p>{{description}}</p>
+    </div>
+    <div class="ratings">
+      <span class="rating-number">{{ratingRate}}</span>
+      <span class="rating-stars" *ngFor="let star of [1, 2, 3, 4, 5]">
+        <fa-icon [icon]="faStar" [ngStyle]="{color: ratingRate >= star ? 'goldenrod':'#dedcdc'}"></fa-icon>
+      </span>
+      <span class="rating-count">({{ ratingCount }})</span>
+    </div>
+    <div class="price">
+      <p><sup>&#x20B9;</sup> <span class="price-number">{{ price }}</span> <span><del>&#x20B9; 2,800</del></span> <span class="discount">(81% off)</span></p>
+    </div>
+    <!-- [disabled]="!islogin" -->
+    <button (click)="onAddToCart($event)" class="add-to-cart" title="Add to cart" [routerLink]="['/products', id]">Add to Cart</button>
+  </div>
+  
+</div>
