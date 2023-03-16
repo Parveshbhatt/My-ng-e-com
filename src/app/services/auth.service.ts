@@ -14,12 +14,13 @@ export class AuthService {
   
   loginSubscribtion: Subscription;
 
-  constructor(private store: Store<AppState>) { }
-
-  ngOnInit(): void {
+  constructor(private store: Store<AppState>) {
     this.loginSubscribtion = this.store.select('login').subscribe((data) => {
       this.isLogin =  data.login;
     });
+   }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {

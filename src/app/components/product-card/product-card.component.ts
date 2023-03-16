@@ -10,6 +10,7 @@ import { Product } from 'src/app/model/product';
 import { addProduct } from 'src/app/cart/state/cart.actions';
 import { ProductsService } from 'src/app/services/product.service';
 import { HttpClient } from '@angular/common/http';
+import { AddToCartService } from 'src/app/services/add-to-cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -39,7 +40,8 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
   constructor(private router: Router, 
     private store: Store<AppState>, 
     private route: ActivatedRoute, 
-    private http: HttpClient) { 
+    private http: HttpClient,
+    private cart: AddToCartService) { 
   
     }
 
@@ -64,38 +66,42 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
     }
   }
 
-  onAddToCart(id:number) {
+  // onAddToCart(id:number) {
 
-    setTimeout(() =>{
-      if(this.islogin){
-        console.log("from onAddtoCart productId: "+id)
-      const matchedProduct =  this.products.filter((product) => {
-          return product.id === id;
-        })
+  //   setTimeout(() =>{
+  //     if(this.islogin){
+  //       console.log("from onAddtoCart productId: "+id)
+  //     const matchedProduct =  this.products.filter((product) => {
+  //         return product.id === id;
+  //       })
   
   
-        console.log(matchedProduct);
+  //       console.log(matchedProduct);
   
-        const product: Product = {
-          id: matchedProduct[0].id,
-          price: matchedProduct[0].price,
-          title: matchedProduct[0].title,
-          description: matchedProduct[0].description,
-          image: matchedProduct[0].image,
-          category:matchedProduct[0].category,
-        }
-        console.log("PRoduct to add"+ product);
+  //       const product: Product = {
+  //         id: matchedProduct[0].id,
+  //         price: matchedProduct[0].price,
+  //         title: matchedProduct[0].title,
+  //         description: matchedProduct[0].description,
+  //         image: matchedProduct[0].image,
+  //         category:matchedProduct[0].category,
+  //       }
+  //       console.log("PRoduct to add"+ product);
   
-        this.store.dispatch(addProduct( { product } ));
-      }else{
-        this.router.navigate(['/login']);
-      }
-    }, 500);
+  //       this.store.dispatch(addProduct( { product } ));
+  //     }else{
+  //       this.router.navigate(['/login']);
+  //     }
+  //   }, 500);
 
-    // this.route.paramMap.subscribe((params) => {
-    //   console.log(params.get('id'));
-    //   this.productId = +params.get('id');
-    // });
+  //   // this.route.paramMap.subscribe((params) => {
+  //   //   console.log(params.get('id'));
+  //   //   this.productId = +params.get('id');
+  //   // });
+  // }
+
+  onAddToCart(id:number){
+    this.cart.onAddToCart(id);
   }
 
   onImgClick(){

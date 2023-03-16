@@ -1,22 +1,37 @@
 <ng-container *ngIf="!isLogin">
   <app-navbar></app-navbar>
 </ng-container>
-
 <h1>Our Products</h1>
-<div class="product-container">
-  <div *ngFor="let item of products">
-    <app-product-card
-    [item]="item"
-    [id]="item.id"
-    [title]="item.category"
+<div class="header">
+  <app-search (searchValueChanged)="onSearchValueEntered($event)" class="pt-1"></app-search>
 
-    [description]="item.title.slice(0, 55)+((item.title.length>50)?'...':'') "
-    [price]="item.price"
-    [source]="item.image"
-    [ratingRate]="item.rating.rate"
-    [ratingCount]="item.rating.count"
-    [products]="products"
-    ></app-product-card>
+  <div class="filter">
+    <h6 class="d-inline-block">Sort by: </h6>
+    <button class="btn btn-primary me-2 ms-2" (click)="sort('asc')">l-h Price</button>
+    <button class="btn btn-primary" (click)="sort('dsc')">h-l Price</button>
   </div>
+</div>
+
+<div class="text-center mt-5" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="product-container" *ngIf="!isLoading">
+  <ng-container *ngFor="let item of products">
+    <div *ngIf="searchValue === '' || item.title.toLowerCase().includes(searchValue)">
+      <app-product-card
+      [item]="item"
+      [id]="item.id"
+      [title]="item.category"
+  
+      [description]="item.title.slice(0, 55)+((item.title.length>50)?'...':'') "
+      [price]="item.price"
+      [source]="item.image"
+      [ratingRate]="item.rating.rate"
+      [ratingCount]="item.rating.count"
+      [products]="products"
+      ></app-product-card>
+    </div>
+    </ng-container>
 </div>
 

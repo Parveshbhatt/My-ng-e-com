@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { addProduct } from "./cart.actions";
+import { addProduct, deleteProduct } from "./cart.actions";
 import { initialState } from "./cart.state";
 
 const _cartReducer = createReducer(
@@ -11,6 +11,15 @@ const _cartReducer = createReducer(
     return {
       ...state,
       cart: [...state.cart, product],
+    }
+  }), 
+  on(deleteProduct, (state, action)=>{
+    const updatedCart = state.cart.filter((product) => {
+      return product.id !== action.id;
+    })
+    return {
+      ...state,
+      cart : updatedCart,
     }
   })
   );

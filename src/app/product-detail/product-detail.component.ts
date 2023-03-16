@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { AddToCartService } from '../services/add-to-cart.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,8 +12,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 export class ProductDetailComponent implements OnInit {
   item: Object;
   faStar = faStar;
-
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router, private cart: AddToCartService) {
 
   }
 
@@ -21,5 +22,13 @@ export class ProductDetailComponent implements OnInit {
       this.item = JSON.parse(params.get('item'));
       console.log(this.item);
     });
+  }
+
+  onBackClick(){
+    this.router.navigate(['/products']);
+  }
+
+  onAddToCart(id:number){
+    this.cart.onAddToCart(id);
   }
 }

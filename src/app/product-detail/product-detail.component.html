@@ -1,19 +1,19 @@
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5 px-3">
   <div class="row d-flex justify-content-center">
     <div class="col-md-10">
       <div class="card">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <!-- <div class="images p-3"> -->
               <div class="text-center p-4 images"> 
                 <img id="main-image" class="product-img" [src]="[item['image']]"/>
               </div>
             <!-- </div> -->
           </div>
-          <div class="col-md-6">
+          <div class="col-md-7">
             <div class="product p-4">
               <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center" (click)="onBackClick()">
                   <i class="fa fa-long-arrow-left"></i>
                   <span class="ms-1">Back</span>
                 </div>
@@ -25,8 +25,9 @@
                   <div class="ms-2"> <small class="dis-price">₹59</small> <span class="ms-2">40% OFF</span> </div>
                 </div>
               </div>
+              <h6 class="text-uppercase mt-2">About this item</h6>
               <p class="about">{{item['description']}}</p>
-              <div class="sizes mt-5">
+              <div class="sizes mt-4">
                 <h6 class="text-uppercase">Ratings</h6>
                 <div class="ratings">
                   <span class="rating-number">{{item['rating']['rate']}}</span>
@@ -36,7 +37,7 @@
                   <span class="rating-count">({{ item['rating']['count'] }})</span>
                 </div>
               </div>
-              <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase me-2 px-4">
+              <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase me-2 px-4" (click)="onAddToCart(item['id'])">
                   Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
               </div>
             </div>

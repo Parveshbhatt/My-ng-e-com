@@ -21,6 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { ProductsService } from './services/product.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { FormsModule } from '@angular/forms';
+import { SearchComponent } from './components/search/search.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 const appRoute: Routes = [
@@ -38,12 +41,15 @@ const appRoute: Routes = [
     CartComponent,
     ProductsListComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SearchComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     LoginPageModule,
     FontAwesomeModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoute),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })

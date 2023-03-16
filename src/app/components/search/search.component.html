@@ -1,0 +1,6 @@
+
+<div class="search-div">
+  <span class="me-2"><b>Search:</b></span>
+  <input type="text" [(ngModel)]="searchValue" (input)="onSearchValueChange()">
+  <h6 *ngIf="searchValue != ''" class="mt-3">Your Searched results for "{{ searchValue }}"</h6>
+</div>

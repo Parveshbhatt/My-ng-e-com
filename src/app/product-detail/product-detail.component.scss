@@ -3,6 +3,7 @@ body {
   box-sizing: border-box;
 }
 
+
 .card {
   border: none
 }
@@ -25,7 +26,7 @@ body {
 }
 
 .about {
-  font-size: 14px
+  font-size: 1em;
 }
 
 .color {
@@ -76,6 +77,8 @@ label.radio {
   position: relative;
   width: 100%;
   height: 100%;
+  border-bottom: 1px solid #da0606 ;
+  border-top: 1px solid #da0606 ;
 
   .product-img{
     position: absolute;

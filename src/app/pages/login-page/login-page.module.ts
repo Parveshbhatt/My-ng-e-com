@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
 
 
 import { LoginFormComponent } from '../../components/login-form/login-form.component';
@@ -36,6 +37,7 @@ const appRoute: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoute),
     StoreModule.forRoot(appReducer),
