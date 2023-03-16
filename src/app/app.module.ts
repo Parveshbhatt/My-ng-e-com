@@ -19,16 +19,15 @@ import { ProductsListComponent } from './cart/products-list/products-list.compon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
+import { ProductsService } from './services/product.service';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 const appRoute: Routes = [
-  // {path: '', component: LoginFormComponent},
   {path: 'home', component: HomeComponent},
   {path: 'loginpage', component: LoginPageComponent},
-  // {path: 'login', component: LoginFormComponent},
   {path: 'singup', component: SignupFormComponent}
 ]
-
 
 @NgModule({
   declarations: [
@@ -38,7 +37,8 @@ const appRoute: Routes = [
     ProductCardComponent,
     CartComponent,
     ProductsListComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +49,9 @@ const appRoute: Routes = [
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [
+    ProductsService,
     UserService,
-    AuthService
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { AppState } from '../app.state';
 import { User } from '../model/user';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  isLogin:boolean;
+  
+  loginSubscribtion: Subscription;
+
+  constructor(private store: Store<AppState>) { }
+
+  ngOnInit(): void {
+    this.loginSubscribtion = this.store.select('login').subscribe((data) => {
+      this.isLogin =  data.login;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if(this.loginSubscribtion){
+      this.loginSubscribtion.unsubscribe();
+    }
+  }
 
   authUser(user: User){
     let usersArray = [];

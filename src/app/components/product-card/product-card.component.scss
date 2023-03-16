@@ -25,9 +25,9 @@ $grey-background: #e7e4e4dc;
 .product-card {
   position: relative;
   border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   height: 500px;
-  width: 300px;
+  width: 315px;
 
   .card-img {
     background-color: $grey-background;
@@ -36,6 +36,11 @@ $grey-background: #e7e4e4dc;
     height: 60%;
     margin: 20px auto 0 auto;
     position: relative;
+
+    &:hover{
+      cursor: pointer;
+      opacity: 0.9;
+    }
 
     img {
       background-color: $grey-background;

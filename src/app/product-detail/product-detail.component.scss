@@ -1,0 +1,90 @@
+body {
+  background-color: #000;
+  box-sizing: border-box;
+}
+
+.card {
+  border: none
+}
+
+.product {
+  background-color: #eee
+}
+
+.brand {
+  font-size: 13px
+}
+
+.act-price {
+  color: red;
+  font-weight: 700
+}
+
+.dis-price {
+  text-decoration: line-through
+}
+
+.about {
+  font-size: 14px
+}
+
+.color {
+  margin-bottom: 10px
+}
+
+label.radio {
+  cursor: pointer
+}
+
+
+.btn-danger {
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important
+}
+
+.btn-danger:hover {
+  background-color: #da0606 !important;
+  border-color: #da0606 !important
+}
+
+.btn-danger:focus {
+  box-shadow: none
+}
+
+.cart i {
+  margin-right: 10px
+}
+
+.ratings {
+  padding-top: 0.2em;
+  .rating-number {
+    margin-right: 0.5em;
+  }
+
+  .rating-count {
+    margin-left: 0.3em;
+    color: #062851;
+
+    &:hover {
+      color: #c34c07;
+      cursor: pointer;
+    }
+  }
+}
+
+.images{
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .product-img{
+    position: absolute;
+    right: 2em;
+    left: 2em;
+    top: 2em;
+    bottom: 2em;
+    width: 80%;
+    height: 81%;
+  }
+
+}

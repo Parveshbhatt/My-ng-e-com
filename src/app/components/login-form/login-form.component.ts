@@ -21,6 +21,7 @@ export class LoginFormComponent {
     private router: Router, private store: Store<AppState>
   ) {
     this.wrongCredentials = false;
+    // this.token = this.authService.authUser(this.loginForm.value);
   }
 
   ngOnInit() {
@@ -32,9 +33,7 @@ export class LoginFormComponent {
 
   onLogin() {
     console.log(this.loginForm);
-
     const token = this.authService.authUser(this.loginForm.value);
-
     if (token) {
       localStorage.setItem('token', token.username);
       console.log("Login Successfull");
@@ -57,6 +56,5 @@ export class LoginFormComponent {
   get password() {
     return this.loginForm.get('password') as FormControl;
   }
-
 
 }

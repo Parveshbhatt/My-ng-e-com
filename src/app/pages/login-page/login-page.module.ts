@@ -9,23 +9,23 @@ import { LoginFormComponent } from '../../components/login-form/login-form.compo
 import { SignupFormComponent } from '../../components/signup-form/signup-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from 'src/app/home/home.component';
-import { loginReducer } from 'src/app/components/login-form/state/login.reducer';
-import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
 import { CartComponent } from 'src/app/cart/cart.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducer } from 'src/app/app.state';
 import { ProductComponent } from 'src/app/product/product.component';
-// import { NavbarComponent } from 'src/app/navbar/navbar.component';
+import { ProductDetailComponent } from 'src/app/product-detail/product-detail.component';
 
-
+// {path: 'products/:id', component: ProductComponent},
 const appRoute: Routes = [
-  {path: '', component: ProductComponent},
-  {path: 'products/:id', component: ProductComponent},
+  {path: '', component: LoginFormComponent},
   {path: 'products', component: ProductComponent},
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'product-detail', component: ProductDetailComponent },
+  { path: 'product-detail/:item', component: ProductDetailComponent },
+
 ]
 
 @NgModule({
@@ -33,7 +33,6 @@ const appRoute: Routes = [
     LoginPageComponent,
     LoginFormComponent,
     SignupFormComponent
-    // NavbarComponent
   ],
   imports: [
     CommonModule,

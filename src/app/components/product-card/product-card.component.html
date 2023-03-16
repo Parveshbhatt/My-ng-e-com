@@ -6,7 +6,7 @@
 <!-- <app-login-page></app-login-page> -->
 
 <div class="product-card">
-  <div class="card-img">
+  <div class="card-img" (click)="onImgClick()">
     <img [src]="source" alt=" watch image">
     <fa-icon [icon]="faHeartCirclePlus" title="Add to Wishlist"></fa-icon>
   </div>
@@ -29,7 +29,8 @@
       <p><sup>&#x20B9;</sup> <span class="price-number">{{ price }}</span> <span><del>&#x20B9; 2,800</del></span> <span class="discount">(81% off)</span></p>
     </div>
     <!-- [disabled]="!islogin" -->
-    <button (click)="onAddToCart($event)" class="add-to-cart" title="Add to cart" [routerLink]="['/products', id]">Add to Cart</button>
+    <!-- [routerLink]="['/products', id]"  -->
+    <button  class="add-to-cart" title="Add to cart" (click)="onAddToCart(id)">Add to Cart</button>
   </div>
   
 </div>
