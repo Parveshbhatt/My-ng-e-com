@@ -45,4 +45,16 @@
     color: red;
     margin-bottom: 10px;
   }
+
+  .password-field{
+    position: relative;
+    .fa-eye{
+      font-size: 1.1em;
+      position: absolute;
+      top: 35%;
+      right: 4%;
+      cursor: pointer;
+      color: rgba(93, 91, 91, 0.944);
+    }
+  }
 }

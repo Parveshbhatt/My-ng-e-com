@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { AppState } from '../app.state';
 import { addProduct } from '../cart/state/cart.actions';
 import { Product } from '../model/product';
@@ -13,16 +14,25 @@ import { ProductsService } from './product.service';
 export class AddToCartService implements OnInit {
 
   isLogin:boolean;
+  loginSubscribtion: Subscription;
 
   constructor(private auth: AuthService,
     private product: ProductsService,
     private store: Store<AppState>,
     private router: Router) { 
-      this.isLogin = this.auth.isLogin;
+      this.loginSubscribtion = this.store.select('login').subscribe((data) => {
+        this.isLogin =  data.login;
+      });
     }
 
     ngOnInit(){
       
+    }
+
+    ngOnDestroy(): void {
+      if(this.loginSubscribtion){
+        this.loginSubscribtion.unsubscribe();
+      }
     }
 
   onAddToCart(id:number) {
@@ -54,10 +64,5 @@ export class AddToCartService implements OnInit {
         this.router.navigate(['/login']);
       }
     }, 500);
-
-    // this.route.paramMap.subscribe((params) => {
-    //   console.log(params.get('id'));
-    //   this.productId = +params.get('id');
-    // });
   }
 }

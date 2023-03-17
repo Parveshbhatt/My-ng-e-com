@@ -1,27 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { AddToCartService } from '../services/add-to-cart.service';
 import { AuthService } from '../services/auth.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, DoCheck {
   item: Object;
   faStar = faStar;
-  constructor(private route: ActivatedRoute, private router: Router, private cart: AddToCartService) {
+  storedTheme: string = '';
+  constructor(private route: ActivatedRoute, private router: Router, private cart: AddToCartService,
+    private theme: ThemeService) {
 
   }
 
   ngOnInit(): void {
+    this.storedTheme = this.theme.getTheme();
+
     this.route.paramMap.subscribe((params) => {
       console.log('Item in detail');
       this.item = JSON.parse(params.get('item'));
       console.log(this.item);
     });
+  }
+
+  ngDoCheck(): void {
+    this.storedTheme = this.theme.getTheme();
   }
 
   onBackClick(){

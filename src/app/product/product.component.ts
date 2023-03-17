@@ -1,19 +1,23 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ProductsService } from '../services/product.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit, OnChanges, OnChanges{
+export class ProductComponent implements OnInit, OnChanges, DoCheck{
   products = [];
   isLogin:boolean;
   isLoading: boolean;
   item:Object;
   searchValue: string = '';
+
+  storedTheme: string = '';
+  
   
 //   this.route.paramMap.subscribe((params) => {
 //     console.log(params.get('id'));
@@ -23,13 +27,16 @@ export class ProductComponent implements OnInit, OnChanges, OnChanges{
   constructor(private productService: ProductsService, 
     private route: ActivatedRoute, 
     private auth: AuthService,
-    private router: Router){
+    private router: Router,
+    private theme: ThemeService){
     this.isLogin = auth.isLogin;
     this.isLoading = true;
   }
 
   ngOnInit(): void {
+    
     this.isLoading = this.productService.isLoading;
+    this.storedTheme = this.theme.getTheme();
     // console.log("loading in product: ");
     console.log(this.isLoading);
     // this.isLoading = this.productService.fetchProducts();
@@ -40,6 +47,10 @@ export class ProductComponent implements OnInit, OnChanges, OnChanges{
     // this.isLoading = this.productService.fetchProducts();
     // console.log("After loading in product: ");
     // console.log(this.isLoading);
+  }
+
+  ngDoCheck(): void {
+      this.storedTheme = this.theme.getTheme();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

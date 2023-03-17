@@ -1,0 +1,5 @@
+<div class="theme-toggle d-flex">
+  <h6 class="me-2 mt-4"><b><i>Change Theme:</i></b></h6>
+  <i class="fa fa-toggle-on toggle-icon mt-4" aria-hidden="true" *ngIf="storedTheme==='theme-dark'" (click)="setTheme()"></i>
+  <i class="fa fa-toggle-off toggle-icon mt-4" aria-hidden="true" *ngIf="storedTheme==='theme-light'" (click)="setTheme()"></i>
+</div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -11,13 +11,14 @@ import { addProduct } from 'src/app/cart/state/cart.actions';
 import { ProductsService } from 'src/app/services/product.service';
 import { HttpClient } from '@angular/common/http';
 import { AddToCartService } from 'src/app/services/add-to-cart.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss']
 })
-export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
+export class ProductCardComponent implements OnInit, OnDestroy, OnChanges, DoCheck{
 
   @Input() id:number = 0;
   @Input() title:string = "";
@@ -33,12 +34,14 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
 
 
   islogin: boolean;
+  storedTheme: string;
 
   loginSubscribtion: Subscription;
   @Input() products;
 
   constructor(private router: Router, 
     private store: Store<AppState>, 
+    private theme: ThemeService,
     private route: ActivatedRoute, 
     private http: HttpClient,
     private cart: AddToCartService) { 
@@ -49,6 +52,7 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
   ngOnInit(): void{
     console.log("card onINit : ");
     console.log(this.products);
+    this.storedTheme = this.theme.getTheme();
 
     this.loginSubscribtion = this.store.select('login').subscribe((data) => {
       this.islogin = data.login;
@@ -59,6 +63,9 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
   }
 
+  ngDoCheck(): void {
+    this.storedTheme = this.theme.getTheme();
+  }
 
   ngOnDestroy(){
     if(this.loginSubscribtion){

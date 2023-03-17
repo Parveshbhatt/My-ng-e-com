@@ -1,10 +1,22 @@
+$bg-theme-light: #fff;
+$color-theme-light: #000;
+
+
+$bg-theme-dark: rgba($color: #212121e7, $alpha: 1.0);
+$color-theme-dark: #fff;
+
+
+.product-page{
+  padding-top: 3em;
+}
+
 .header{
   display: flex;
   justify-content: space-around;
 }
 h1{
   text-align: center;
-  margin: 1.2em 0.9em 0.9em 0.9em;
+  margin: 0 0.9em 0.9em 0.9em;
 }
 .product-container{
   display: grid;
@@ -18,4 +30,35 @@ h1{
   app-product-card{
     place-self: center;
   }
+
+}
+
+.dropdown{
+  margin: 1.2em 0.5em;
+}
+
+.dropdown-item{
+  cursor: pointer;
+}
+
+
+.product-page.theme-dark{
+  background-color: $bg-theme-dark;
+  color: $color-theme-dark;
+  h1{
+    color: #eee;
+  }
+  .header{
+    color: #eee;
+  }
+  .product-container{
+    background-color: rgba($color: #212121e7, $alpha: 1.0);
+    color: $color-theme-dark;
+  }
+
+  // .dropdown{
+  //   .btn{
+  //     color: white;
+  //   }
+  // }
 }

@@ -1,0 +1,16 @@
+// .search-div{
+//   width: ;
+// }
+input[type="text"]{
+  width: 20rem;
+  padding: 12px 10px;
+  margin: 8px 0 1px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:focus {
+    box-shadow: 0 0 8px #e681a8;
+    outline-color: #ec81aa;
+  }
+}

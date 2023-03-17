@@ -16,11 +16,13 @@ import { AppState } from 'src/app/app.state';
 export class LoginFormComponent {
   loginForm: FormGroup;
   wrongCredentials: boolean;
+  showPassword: boolean;
 
   constructor(private authService: AuthService,
     private router: Router, private store: Store<AppState>
   ) {
     this.wrongCredentials = false;
+    this.showPassword = false;
     // this.token = this.authService.authUser(this.loginForm.value);
   }
 
@@ -43,6 +45,15 @@ export class LoginFormComponent {
     } else {
       this.wrongCredentials = true;
       console.log("Login not successfull");
+    }
+  }
+
+  onShowPassword(passwordInput: HTMLInputElement){
+    this.showPassword = !this.showPassword;
+    if(this.showPassword){
+      passwordInput.type = "text";
+    }else{
+      passwordInput.type = "password";
     }
   }
 
