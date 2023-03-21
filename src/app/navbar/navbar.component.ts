@@ -11,7 +11,7 @@ import { ThemeService } from '../services/theme.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit, DoCheck{
+export class NavbarComponent implements OnInit{
 
   loginSubscribtion: Subscription;
   isLogin = false;
@@ -23,16 +23,19 @@ export class NavbarComponent implements OnInit, DoCheck{
   }
 
   ngOnInit(){
-    this.storedTheme = this.theme.getTheme();
+    // this.storedTheme = this.theme.getTheme();
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    })
     console.log("nav theme: "+this.storedTheme);
     this.loginSubscribtion = this.store.select('login').subscribe((data) => {
       this.isLogin = data.login;
     });
-  } 
-
-  ngDoCheck(): void {
-    this.storedTheme = this.theme.getTheme();
   }
+
+  // ngDoCheck(): void {
+  //   // this.storedTheme = this.theme.getTheme();
+  // }
 
   loggedin(){
     return this.isLogin;

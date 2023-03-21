@@ -9,10 +9,10 @@ import { ThemeService } from '../services/theme.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit, OnChanges, DoCheck{
+export class ProductComponent implements OnInit{
   products = [];
   isLogin:boolean;
-  isLoading: boolean;
+  isLoading: boolean = true;
   item:Object;
   searchValue: string = '';
 
@@ -30,35 +30,55 @@ export class ProductComponent implements OnInit, OnChanges, DoCheck{
     private router: Router,
     private theme: ThemeService){
     this.isLogin = auth.isLogin;
-    this.isLoading = true;
+    // this.isLoading = this.productService.getIsLoading();
   }
 
   ngOnInit(): void {
     
-    this.isLoading = this.productService.isLoading;
-    this.storedTheme = this.theme.getTheme();
+    // this.isLoading = true;
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    });
+    console.log("theme in product component: :");
+    console.log(this.storedTheme);
+    this.productService.isLoading.subscribe((value)=>{
+      console.log("load in product:");
+      console.log(value);
+      this.isLoading = value;
+    });
+    // this.storedTheme = this.theme.getTheme();
     // console.log("loading in product: ");
-    console.log(this.isLoading);
     // this.isLoading = this.productService.fetchProducts();
-    setTimeout(()=>{
-      this.isLoading = false;
-    },250);
+    // setTimeout(()=>{
+      // this.isLoading = this.productService.getIsLoading();
+      console.log(this.isLoading);
+
+      
+    // },250);
     this.products = this.productService.products;
+  // this.isLoading = false;
     // this.isLoading = this.productService.fetchProducts();
     // console.log("After loading in product: ");
-    // console.log(this.isLoading);
+    // this.isLoading = this.productService.getIsLoading();
+    console.log(this.isLoading);
   }
 
   ngDoCheck(): void {
-      this.storedTheme = this.theme.getTheme();
+      // this.storedTheme = this.theme.getTheme();
+      // this.theme.themeEmitter.subscribe((value)=>{
+      //   this.storedTheme = value;
+      // });
+      // this.productService.isLoading.subscribe((value)=>{
+      //   this.isLoading = value;
+      // });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  // }
 
-  ngAfterContentInit(){
-    // this.isLoading = false;
-  }
+  // ngAfterContentInit(){
+  //   // this.isLoading = false;
+  // }
 
   // onProductClick(item:Object){
   //   console.log("item from product");
@@ -71,11 +91,11 @@ export class ProductComponent implements OnInit, OnChanges, DoCheck{
     console.log(this.searchValue);
   }
 
-  ngAfterViewChecked(): void {
-      // this.isLoading = this.productService.fetchProducts();
-      // this.isLoading = false;
-      // console.log("isloading in after content checked: "+this.isLoading);
-  }
+  // ngAfterViewChecked(): void {
+  //     // this.isLoading = this.productService.fetchProducts();
+  //     // this.isLoading = false;
+  //     // console.log("isloading in after content checked: "+this.isLoading);
+  // }
 
   sort(order:string){
     if(order==='asc'){

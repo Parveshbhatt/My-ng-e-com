@@ -10,7 +10,7 @@ import { ThemeService } from '../services/theme.service';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit, DoCheck {
+export class ProductDetailComponent implements OnInit {
   item: Object;
   faStar = faStar;
   storedTheme: string = '';
@@ -20,7 +20,10 @@ export class ProductDetailComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.storedTheme = this.theme.getTheme();
+    // this.storedTheme = this.theme.getTheme();
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    })
 
     this.route.paramMap.subscribe((params) => {
       console.log('Item in detail');
@@ -29,9 +32,9 @@ export class ProductDetailComponent implements OnInit, DoCheck {
     });
   }
 
-  ngDoCheck(): void {
-    this.storedTheme = this.theme.getTheme();
-  }
+  // ngDoCheck(): void {
+  //   // this.storedTheme = this.theme.getTheme();
+  // }
 
   onBackClick(){
     this.router.navigate(['/products']);

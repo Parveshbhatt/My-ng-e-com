@@ -54,7 +54,7 @@ export class AddToCartService implements OnInit {
           price: matchedProduct[0].price,
           title: matchedProduct[0].title,
           description: matchedProduct[0].description,
-          image: matchedProduct[0].image,
+          image: matchedProduct[0].thumbnail,
           category:matchedProduct[0].category,
         }
         console.log("PRoduct to add"+ product);

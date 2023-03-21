@@ -27,6 +27,7 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges, DoChe
   @Input() source:string = "";
   @Input() ratingRate:number = 0;
   @Input() ratingCount:number = 0;
+  @Input() category:string;
   @Input() item:Object;
 
   faStar = faStar;
@@ -52,8 +53,12 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges, DoChe
   ngOnInit(): void{
     console.log("card onINit : ");
     console.log(this.products);
-    this.storedTheme = this.theme.getTheme();
-
+    // this.storedTheme = this.theme.getTheme();
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    });
+    console.log("theme in product Card: :");
+    console.log(this.storedTheme);
     this.loginSubscribtion = this.store.select('login').subscribe((data) => {
       this.islogin = data.login;
       console.log("islogin: "+ this.islogin);
@@ -64,7 +69,10 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges, DoChe
   }
 
   ngDoCheck(): void {
-    this.storedTheme = this.theme.getTheme();
+    // this.storedTheme = this.theme.getTheme();
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    })
   }
 
   ngOnDestroy(){

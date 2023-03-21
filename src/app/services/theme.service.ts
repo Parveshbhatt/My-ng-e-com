@@ -1,40 +1,50 @@
-import { DoCheck, Injectable } from '@angular/core';
+import { DoCheck, EventEmitter, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { AppState } from '../app.state';
-
+ 
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService implements DoCheck{
-  themeSubscribtion: Subscription;
-  storedTheme:string;
+export class ThemeService{
+  // themeSubscribtion: Subscription;
+  // storedTheme:string;
+  // themeEmitter = new EventEmitter<string>();
 
+  
+  themeEmitter = new BehaviorSubject<string>(localStorage.getItem('theme-color'));
+  
   constructor(private store: Store<AppState>) { 
-    this.themeSubscribtion = this.store.select('theme').subscribe((data) => {
-      this.setTheme(data.theme);
-      console.log("Theme Service: "+ this.getTheme());
-    });
+    // this.themeSubscribtion = this.store.select('theme').subscribe((data) => {
+    //   this.setTheme(data.theme);
+    //   console.log("Theme Service: "+ this.getTheme());
+    // });
   }
 
-  ngDoCheck(){
-    this.themeSubscribtion = this.store.select('theme').subscribe((data) => {
-      this.setTheme(data.theme);
-      console.log("Theme Service: "+ this.getTheme());
-    });
+  raiseThemeEvent(theme:string){
+    this.themeEmitter.next(theme);
   }
 
-  ngOnDestroy(){
-    if(this.themeSubscribtion){
-      this.themeSubscribtion.unsubscribe();
-    }
-  }
+  // ngDoCheck(){
+  //   // this.themeSubscribtion = this.store.select('theme').subscribe((data) => {
+  //   //   this.setTheme(data.theme);
+  //   //   console.log("Theme Service: "+ this.getTheme());
+  //   // });
+  // }
 
-  setTheme(theme:string){
-    this.storedTheme = theme;
-  }
+  // ngOnDestroy(){
+  //   // if(this.themeSubscribtion){
+  //   //   this.themeSubscribtion.unsubscribe();
+  //   // }
+  // }
 
-  getTheme(){
-    return this.storedTheme;
-  }
+  // setTheme(theme:string){
+  //   this.storedTheme = theme;
+  // }
+
+  // getTheme(){
+  //   return this.storedTheme;
+  // }
+
+ 
 }

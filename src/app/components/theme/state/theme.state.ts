@@ -3,5 +3,5 @@ export interface themeState{
 }
 
 export const initialState: themeState = {
-  theme: 'theme-light'
+  theme: localStorage.getItem('theme-color')
 }

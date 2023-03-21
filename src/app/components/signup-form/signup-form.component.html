@@ -38,7 +38,11 @@
     </div>
 
     <label for="passwordSignup">Password</label>
-    <input type="password" id="passwordSignup" formControlName="password">
+    <div class="password-field">
+      <input type="password" id="passwordSignup" formControlName="password" #passwordInput>
+      <i class="fa fa-eye" aria-hidden="true" (click)="onShowPassword(passwordInput)" [ngStyle]="{'color': showPassword ? '#000' : 'rgba(93, 91, 91, 0.944)'}" [ngClass]="showPassword ? '': 'fa-eye-slash'"></i>
+    </div>
+    <!-- <input type="password" id="passwordSignup" formControlName="password"> -->
     <div *ngIf="password.touched || userSubmitted" class="password-div">
       <small *ngIf="password.errors?.['required']">
         Password is required

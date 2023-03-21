@@ -8,6 +8,7 @@ $color-theme-dark: #fff;
 
 .product-page{
   padding-top: 3em;
+  height: 100vh;
 }
 
 .header{
@@ -55,10 +56,4 @@ h1{
     background-color: rgba($color: #212121e7, $alpha: 1.0);
     color: $color-theme-dark;
   }
-
-  // .dropdown{
-  //   .btn{
-  //     color: white;
-  //   }
-  // }
 }

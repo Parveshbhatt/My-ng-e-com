@@ -14,8 +14,9 @@ export class SignupFormComponent implements OnInit  {
 
   user: User;
   userSubmitted:boolean;
+  showPassword: boolean;
   constructor(private userService: UserService, private router: Router) {
-
+    this.showPassword = false;
   }
 
   ngOnInit(){
@@ -74,6 +75,16 @@ export class SignupFormComponent implements OnInit  {
   
       return valid ? null : error;
     };
+  }
+
+  
+  onShowPassword(passwordInput: HTMLInputElement){
+    this.showPassword = !this.showPassword;
+    if(this.showPassword){
+      passwordInput.type = "text";
+    }else{
+      passwordInput.type = "password";
+    }
   }
 
 //----- getters -------

@@ -10,32 +10,55 @@ import { themeDark, themeLight } from './state/theme.actions';
   templateUrl: './theme.component.html',
   styleUrls: ['./theme.component.scss']
 })
-export class ThemeComponent  implements OnInit, DoCheck{
+export class ThemeComponent  implements OnInit{
   // storedTheme: string = localStorage.getItem('theme-color');
   storedTheme:string;
   
 
-  constructor(private store: Store<AppState>, private theme: ThemeService){}
+  constructor(private store: Store<AppState>, private theme: ThemeService){
+    
+  }
 
   ngOnInit(): void {
-    // localStorage.setItem('theme-color', 'theme-light');
-    this.storedTheme = this.theme.getTheme();
+    // this.storedTheme = this.theme.getTheme();
+    this.storedTheme = localStorage.getItem('theme-color');
+    this.theme.raiseThemeEvent(this.storedTheme);
+    this.theme.themeEmitter.subscribe((value)=>{
+      this.storedTheme = value;
+    })
   }
 
   ngDoCheck(): void {
-    this.storedTheme = this.theme.getTheme();
+    // this.storedTheme = this.theme.getTheme();
+    // this.theme.themeEmitter.subscribe((value)=>{
+    //   this.storedTheme = value;
+    // })
   }
 
 
-  setTheme(){
+  // setTheme(){
+  //   if(this.storedTheme === 'theme-dark'){
+  //     localStorage.setItem('theme-color', 'theme-light');
+  //     // this.storedTheme = localStorage.getItem('theme-color');
+  //     this.store.dispatch(themeLight());
+  //   }else{
+  //     localStorage.setItem('theme-color', 'theme-dark');
+  //     // this.storedTheme = localStorage.getItem('theme-color');
+  //     this.store.dispatch(themeDark());
+  //   }
+  // }
+
+   setTheme(){
     if(this.storedTheme === 'theme-dark'){
-      // localStorage.setItem('theme-color', 'theme-light');
+      localStorage.setItem('theme-color', 'theme-light');
       // this.storedTheme = localStorage.getItem('theme-color');
-      this.store.dispatch(themeLight());
+      // this.store.dispatch(themeLight());
+      this.theme.raiseThemeEvent('theme-light');
     }else{
-      // localStorage.setItem('theme-color', 'theme-dark');
+      localStorage.setItem('theme-color', 'theme-dark');
       // this.storedTheme = localStorage.getItem('theme-color');
-      this.store.dispatch(themeDark());
+      // this.store.dispatch(themeDark());
+      this.theme.raiseThemeEvent('theme-dark');
     }
   }
 }
