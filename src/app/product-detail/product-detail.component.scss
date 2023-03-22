@@ -3,103 +3,83 @@ html {
   box-sizing: border-box;
 }
 
-.product-detail{
-  width: 100vh;
-  height: 100vh;
-}
+.container {
+  .card {
+    border: none;
 
-.card {
-  border: none
-}
+    .images {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-bottom: 1px solid #da0606;
+      border-top: 1px solid #da0606;
 
-.product {
-  background-color: #eee
-}
+      .product-img {
+        position: absolute;
+        right: 2em;
+        left: 2em;
+        top: 2em;
+        bottom: 2em;
+        width: 80%;
+        height: 81%;
+      }
 
-.brand {
-  font-size: 13px
-}
+    }
 
-.act-price {
-  color: red;
-  font-weight: 700
-}
+    .product {
+      background-color: #eee;
 
-.dis-price {
-  text-decoration: line-through
-}
+      .brand {
+        font-size: 13px
+      }
 
-.about {
-  font-size: 1em;
-}
+      .act-price {
+        color: rgba(10, 243, 25, 0.966);
+        font-weight: 700
+      }
 
-.color {
-  margin-bottom: 10px
-}
+      .dis-price {
+        text-decoration: line-through
+      }
 
-label.radio {
-  cursor: pointer
-}
+      .about {
+        font-size: 1em;
+      }
 
+      .ratings {
+        padding-top: 0.2em;
 
-.btn-danger {
-  background-color: #ff0000 !important;
-  border-color: #ff0000 !important
-}
+        .rating-number {
+          margin-right: 0.5em;
+        }
 
-.btn-danger:hover {
-  background-color: #da0606 !important;
-  border-color: #da0606 !important
-}
+        .rating-count {
+          margin-left: 0.3em;
+          color: #062851;
 
-.btn-danger:focus {
-  box-shadow: none
-}
+          &:hover {
+            color: #c34c07;
+            cursor: pointer;
+          }
+        }
+      }
 
-.cart i {
-  margin-right: 10px
-}
+      .cart i {
+        margin-right: 10px
+      }
 
-.ratings {
-  padding-top: 0.2em;
-  .rating-number {
-    margin-right: 0.5em;
+    }
   }
 
-  .rating-count {
-    margin-left: 0.3em;
-    color: #062851;
-
-    &:hover {
-      color: #c34c07;
-      cursor: pointer;
+  &.dark-theme {
+    .card{
+      .product {
+        background-color: #282828;
+        color: #e6e3e3;
+      }
     }
   }
 }
 
-.images{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px solid #da0606 ;
-  border-top: 1px solid #da0606 ;
 
-  .product-img{
-    position: absolute;
-    right: 2em;
-    left: 2em;
-    top: 2em;
-    bottom: 2em;
-    width: 80%;
-    height: 81%;
-  }
 
-}
-
-.dark-theme{
-  background-color: #282828;
-  .product {
-    background-color: #282828;
-    color: #e6e3e3;
-  }
-}
