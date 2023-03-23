@@ -18,7 +18,7 @@ import { ProductDetailComponent } from 'src/app/product-detail/product-detail.co
 
 // {path: 'products/:id', component: ProductComponent},
 const appRoute: Routes = [
-  {path: '', component: LoginFormComponent},
+  {path: '', component: HomeComponent},
   {path: 'products', component: ProductComponent},
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: SignupFormComponent },

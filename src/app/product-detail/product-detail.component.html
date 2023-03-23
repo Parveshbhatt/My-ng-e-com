@@ -1,14 +1,12 @@
-<div class="container mt-5 mb-5 px-3">
+<div class="container mt-5 mb-5 px"  [ngClass]="storedTheme==='theme-light'?'':'dark-theme'">
   <div class="row d-flex justify-content-center">
     <div class="col-md-10">
       <div class="card">
         <div class="row">
           <div class="col-md-5">
-            <!-- <div class="images p-3"> -->
               <div class="text-center p-4 images"> 
-                <img id="main-image" class="product-img" [src]="[item['image']]"/>
+                <img id="main-image" class="product-img" [src]="[item['thumbnail']]"/>
               </div>
-            <!-- </div> -->
           </div>
           <div class="col-md-7">
             <div class="product p-4">
@@ -19,10 +17,14 @@
                 </div>
                 <i class="fa fa-shopping-cart text-muted"></i>
               </div>
-              <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{item['category']}}</span>
+              <div class="mt-4 mb-3"> 
+                <span class="text-uppercase text-muted brand">{{item['category']}}</span>
                 <h5 class="text-uppercase">{{item['title']}}</h5>
-                <div class="price d-flex flex-row align-items-center"> <span class="act-price">₹{{item['price']}}</span>
-                  <div class="ms-2"> <small class="dis-price">₹59</small> <span class="ms-2">40% OFF</span> </div>
+                <div class="price d-flex flex-row align-items-center"> 
+                  <span class="act-price">₹{{item['price']}}</span>
+                  <div class="ms-2"> 
+                    <small class="dis-price">₹59</small>
+                    <span class="ms-2">40% OFF</span> </div>
                 </div>
               </div>
               <h6 class="text-uppercase mt-2">About this item</h6>
@@ -30,15 +32,19 @@
               <div class="sizes mt-4">
                 <h6 class="text-uppercase">Ratings</h6>
                 <div class="ratings">
-                  <span class="rating-number">{{item['rating']['rate']}}</span>
+                  <span class="rating-number">{{item['rating']}}</span>
                   <span class="rating-stars" *ngFor="let star of [1, 2, 3, 4, 5]">
-                    <fa-icon [icon]="faStar" [ngStyle]="{color: item['rating']['rate'] >= star ? 'goldenrod':'#dedcdc'}"></fa-icon>
+                    <fa-icon [icon]="faStar" [ngStyle]="{color: item['rating']>= star ? 'goldenrod':'#dedcdc'}"></fa-icon>
                   </span>
-                  <span class="rating-count">({{ item['rating']['count'] }})</span>
+                  <span class="rating-count">(756)</span>
                 </div>
               </div>
-              <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase me-2 px-4" (click)="onAddToCart(item['id'])">
-                  Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
+              <div class="cart mt-4 align-items-center"> 
+                <button class="btn btn-danger text-uppercase me-2 px-4" (click)="onAddToCart(item['id'])">
+                  Add to cart
+                </button> 
+                <i class="fa fa-heart text-muted"></i>
+                <i class="fa fa-share-alt text-muted"></i>
               </div>
             </div>
           </div>

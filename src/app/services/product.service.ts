@@ -1,52 +1,33 @@
 import { AfterContentChecked, DoCheck, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService implements OnInit, AfterContentChecked{
+export class ProductsService{
 
   products = [];
-  isLoading: boolean = true;
+  isLoading = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {
     console.log("auth constructor");
-    console.log(this.isLoading);
-    this.http.get('https://fakestoreapi.com/products').subscribe((res) => {
-      for(const key in res){
-        if(res.hasOwnProperty(key)){
-          this.products.push({...res[key]});
+    this.isLoading.next(true);
+    this.http.get('https://dummyjson.com/products').subscribe((res) => {
+      console.log(res['products']);
+      for(const key in res['products']){
+        if(res['products'].hasOwnProperty(key)){
+          this.products.push({...res['products'][key]});
         }
       }
-      // console.log(this.products);
+      this.isLoading.next(false);
+      console.log(this.products);
+      
     });
-    // this.isLoading = false;
+    
    }
 
    fetchProducts(){
     return false;
    }
-
-
-   ngOnInit(){
-    // this.fetchProducts();
-    // this.http.get('https://fakestoreapi.com/products').subscribe((res) => {
-    //   for(const key in res){
-    //     if(res.hasOwnProperty(key)){
-    //       this.products.push({...res[key]});
-    //     }
-    //   }
-    //   console.log(this.products);
-    // });
-    console.log("product service on init ");
-    this.isLoading = false;
-   }
-
-   ngAfterContentChecked(): void {
-       this.isLoading = false;
-   }
-
-  // fetchProducts(){
-    
-  // }
 }

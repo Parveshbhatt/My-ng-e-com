@@ -3,5 +3,5 @@ export interface loginState{
 }
 
 export const initialState: loginState = {
-  login: true
+  login: false
 }

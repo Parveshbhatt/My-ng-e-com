@@ -100,19 +100,10 @@ $grey-background: #e7e4e4dc;
     }
 
     .ratings {
-      // margin: 0.5em 0;
       padding-top: 1em;
       .rating-number {
         margin-right: 0.5em;
       }
-
-      // .rating-stars {
-      //   color: ;
-      // }
-
-      // .empty-star {
-      //   color: ;
-      // }
 
       .rating-count {
         margin-left: 0.3em;
@@ -161,6 +152,59 @@ $grey-background: #e7e4e4dc;
 
       &:hover {
         background-color: #3dc922;
+      }
+    }
+  }
+}
+
+.dark-theme{
+  background: rgba($color: #3b3b3bf3, $alpha: 1.0);
+  color: rgba(250, 250, 250, 0.91);
+
+  .card-img{
+    // background-color: #181818;
+    img{
+        // border-style: solid;
+        // border-width: 5px;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,112,9,0.9417016806722689) 0%, rgba(0,212,255,1) 100%);
+        // border-image: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66)) 1;
+        // background-color: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66)) 1;
+    }
+  }
+
+  .card-content{
+    background: rgba($color: #3b3b3bf3, $alpha: 1.0);
+    color: rgba(250, 250, 250, 0.91);
+
+    .description {
+      p {
+        &:hover{
+          color: #a6acf7d8;
+        }
+      }
+    }
+
+    .price {
+      .price-number {
+        color: #ffffff;
+      }
+
+      span {
+        del {
+          color: #c6c4c4;
+        }
+      }
+    }
+
+    .ratings {
+      .rating-count {
+        margin-left: 0.3em;
+        color: #9bc1f0;
+
+        &:hover {
+          color: #e49465;
+        }
       }
     }
   }

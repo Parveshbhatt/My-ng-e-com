@@ -24,6 +24,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './components/search/search.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ThemeComponent } from './components/theme/theme.component';
+import { ThemeService } from './services/theme.service';
 
 
 const appRoute: Routes = [
@@ -43,7 +45,8 @@ const appRoute: Routes = [
     ProductComponent,
     ProductDetailComponent,
     SearchComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ThemeComponent
   ],
   imports: [
     BrowserModule,
@@ -56,8 +59,7 @@ const appRoute: Routes = [
   ],
   providers: [
     ProductsService,
-    UserService,
-    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

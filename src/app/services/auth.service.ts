@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { DoCheck, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from '../app.state';
@@ -8,7 +8,7 @@ import { User } from '../model/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements DoCheck{
 
   isLogin:boolean;
   
@@ -21,6 +21,13 @@ export class AuthService {
    }
 
   ngOnInit(): void {
+  }
+
+
+  ngDoCheck(): void {
+    this.loginSubscribtion = this.store.select('login').subscribe((data) => {
+      this.isLogin =  data.login;
+    });
   }
 
   ngOnDestroy(): void {

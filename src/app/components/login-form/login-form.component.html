@@ -16,13 +16,16 @@
      
 
       <label for="passwordSignin">Password</label>
-      <input type="password" id="passwordSignin" formControlName="password">
+      <div class="password-field">
+        <input type="password" id="passwordSignin" formControlName="password" #passwordInput>
+        <i class="fa fa-eye" aria-hidden="true" (click)="onShowPassword(passwordInput)" [ngStyle]="{'color': showPassword ? '#000' : 'rgba(93, 91, 91, 0.944)'}" [ngClass]="showPassword ? '': 'fa-eye-slash'"></i>
+      </div>
       <div class="error-msg" *ngIf="password.touched">
         <small *ngIf="password.hasError('required')">
           Password is required
         </small>
       </div>
     
-    <input type="submit" value="Sign In" id="btnSignin" [disabled]="!loginForm.valid">
+    <input type="submit" value="Sign In" id="btnSignin">
   </form>
 </div>
